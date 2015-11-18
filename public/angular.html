@@ -1,93 +1,94 @@
 <!DOCTYPE html>
 <html ng-app="sincap">
+
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>Angular App</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
-          crossorigin="anonymous">
-    <script src="js/angular.js"></script>
+  <meta charset="UTF-8">
+  <title>Angular App</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+  crossorigin="anonymous">
+  <script src="js/angular.js"></script>
 </head>
+
 <body>
 
-<div ng-controller="MainCtrl">
+  <div ng-controller="MainCtrl">
     <form class="form-horizontal">
-        <fieldset>
+      <fieldset>
 
-            <!-- Form Name -->
-            <legend>Form Name</legend>
+        <!-- Form Name -->
+        <legend>Form Name</legend>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label">Name</label>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label">Name</label>
 
-                <div class="col-md-4">
-                    <input ng-model="person.name" type="text" placeholder="Enter your name"
-                           class="form-control input-md">
+          <div class="col-md-4">
+            <input ng-model="person.name" type="text" placeholder="Enter your name" class="form-control input-md">
 
-                </div>
-            </div>
+          </div>
+        </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label">Age</label>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label">Age</label>
 
-                <div class="col-md-4">
-                    <input ng-model="person.age" type="text" placeholder="Enter your age" class="form-control input-md">
+          <div class="col-md-4">
+            <input ng-model="person.age" type="text" placeholder="Enter your age" class="form-control input-md">
 
-                </div>
-            </div>
+          </div>
+        </div>
 
-            <!-- Button -->
-            <div class="form-group">
-                <label class="col-md-4 control-label">Send</label>
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label">Send</label>
 
-                <div class="col-md-4">
-                    <button ng-click="sendIt()" class="btn btn-primary">Send</button>
-                </div>
-            </div>
+          <div class="col-md-4">
+            <button ng-click="sendIt()" class="btn btn-primary">Send</button>
+          </div>
+        </div>
 
-        </fieldset>
+      </fieldset>
     </form>
 
     <hr/>
 
-    <input ng-model="search" type="text"/>
+    <input ng-model="search" type="text" />
     <hr/>
 
     <!--table>(thead>tr>th*2)+(tbody>tr>td*2)-->
     <table class="table">
-        <thead>
+      <thead>
         <tr>
-            <th>Name</th>
-            <th>Age</th>
+          <th>Name</th>
+          <th>Age</th>
         </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <tr ng-repeat="person in persons | filter:search">
-            <td>{{person.name}}</td>
-            <td>{{person.age}}</td>
+          <td>{{person.name}}</td>
+          <td>{{person.age}}</td>
         </tr>
-        </tbody>
+      </tbody>
     </table>
 
-</div>
+  </div>
 
-<script>
+  <script>
     var app = angular.module("sincap", []);
-    app.controller("MainCtrl", function ($scope, $http) {
-        $scope.persons = [];
-        $scope.sendIt = function(){
-            $http.post("/person",$scope.person)
-                    .success(function (data) {
-                        console.log(data);
-                        $scope.persons.push(data);
-                    })
-                    .error(function (err) {
-                        console.log(err);
-                    });
-        };
+    app.controller("MainCtrl", function($scope, $http) {
+      $scope.persons = [];
+      $scope.sendIt = function() {
+        $http.post("/person", $scope.person)
+          .success(function(data) {
+            console.log(data);
+            $scope.persons.push(data);
+          })
+          .error(function(err) {
+            console.log(err);
+          });
+      };
     });
-</script>
+  </script>
 </body>
+
 </html>
