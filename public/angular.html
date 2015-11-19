@@ -88,9 +88,9 @@
           });
       };
       $scope.init = function () {
-        $http.get("/", $scope.person)
+        $http.get("/person", $scope.person)
           .success(function(data) {
-            console.log(data);
+            //console.log(data);
             $scope.persons = JSON.parse(data);
           })
           .error(function(err) {

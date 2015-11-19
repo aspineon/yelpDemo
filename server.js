@@ -20,7 +20,7 @@ var personSchema = mongoose.Schema({
   age: String
 });
 var Person = mongoose.model('Person', personSchema);
-app.get("/", function(req, resp) {
+app.get("/person", function(req, resp) {
   console.log('Get request handled');
   var persons = [];
   Person.find(function(err, persons) {
