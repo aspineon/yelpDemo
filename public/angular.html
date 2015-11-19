@@ -64,7 +64,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="person in persons | filter:search">
+        <tr ng-repeat="person in persons |filter:search">
           <td>{{person.name}}</td>
           <td>{{person.age}}</td>
         </tr>
@@ -81,7 +81,7 @@
         $http.post("/person", $scope.person)
           .success(function(data) {
             console.log(data);
-            $scope.persons.push(data);
+            $scope.persons = JSON.parse(data);
           })
           .error(function(err) {
             console.log(err);
