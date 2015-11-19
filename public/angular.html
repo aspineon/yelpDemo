@@ -11,7 +11,7 @@
 
 <body>
 
-  <div ng-controller="MainCtrl">
+  <div ng-controller="MainCtrl" data-ng-init="init()">
     <form class="form-horizontal">
       <fieldset>
 
@@ -79,6 +79,16 @@
       $scope.persons = [];
       $scope.sendIt = function() {
         $http.post("/person", $scope.person)
+          .success(function(data) {
+            console.log(data);
+            $scope.persons = JSON.parse(data);
+          })
+          .error(function(err) {
+            console.log(err);
+          });
+      };
+      $scope.init = function () {
+        $http.get("/", $scope.person)
           .success(function(data) {
             console.log(data);
             $scope.persons = JSON.parse(data);
