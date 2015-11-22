@@ -12,7 +12,7 @@
 <body>
 
   <div ng-controller="MainCtrl" data-ng-init="init()">
-    <form class="form-horizontal">
+    <form name="addPersonForm" class="form-horizontal">
       <fieldset>
 
         <!-- Form Name -->
@@ -86,11 +86,12 @@
           .error(function(err) {
             console.log(err);
           });
+          //$scope.addPersonForm.$setPristine();
+          $scope.person={};
       };
       $scope.init = function () {
         $http.get("/person", $scope.person)
           .success(function(data) {
-            //console.log(data);
             $scope.persons = JSON.parse(data);
           })
           .error(function(err) {
