@@ -81,18 +81,17 @@
         $http.post("/person", $scope.person)
           .success(function(data) {
             console.log(data);
-            $scope.persons = JSON.parse(data);
+            $scope.persons = data;
           })
           .error(function(err) {
             console.log(err);
           });
-          //$scope.addPersonForm.$setPristine();
           $scope.person={};
       };
       $scope.init = function () {
         $http.get("/person", $scope.person)
           .success(function(data) {
-            $scope.persons = JSON.parse(data);
+            $scope.persons = data;
           })
           .error(function(err) {
             console.log(err);
@@ -101,5 +100,4 @@
     });
   </script>
 </body>
-
 </html>
